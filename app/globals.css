@@ -1,26 +1,354 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0b0b0b;
+  --surface: #121212;
+  --text: #f4f1eb;
+  --muted: #9c9c9c;
+  --border: #292929;
+  --accent: #c9ff63;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+}
+
+.navLinks a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:hover {
+  color: var(--text);
+}
+
+.hero {
+  width: min(1200px, calc(100% - 48px));
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.eyebrow,
+.sectionNumber,
+.projectType {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.hero h1 {
+  margin: 12px 0 0;
+  font-size: clamp(4rem, 10vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero h2 {
+  max-width: 900px;
+  margin: 28px 0 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+
+.heroText {
+  max-width: 650px;
+  margin: 32px 0 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: #0b0b0b;
+  padding: 14px 22px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 3px;
+}
+
+.section {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 130px 0;
+  border-top: 1px solid var(--border);
+}
+
+.sectionNumber {
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  margin: 0 0 60px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 100px;
+}
+
+.largeText {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.aboutCopy {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.aboutCopy p:first-child {
+  margin-top: 0;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.projectCard {
+  min-height: 360px;
+  padding: 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-4px);
+  border-color: #4a4a4a;
+}
+
+.projectCard.featured {
+  grid-column: span 2;
+  min-height: 430px;
+}
+
+.projectCard h3 {
+  max-width: 800px;
+  margin: auto 0 20px;
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.projectDescription {
+  max-width: 720px;
+  margin: 0 0 32px;
+  color: var(--muted);
+}
+
+.tech {
+  margin: 0;
+  color: #747474;
+  font-size: 0.85rem;
+}
+
+.statement {
+  max-width: 850px;
+}
+
+.statement p {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.comingSoon {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.comingSoon p {
+  margin: 0;
+}
+
+.comingSoon span {
+  color: var(--accent);
+}
+
+.contactSection {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 150px 0;
+  border-top: 1px solid var(--border);
+}
+
+.contactSection h2 {
+  max-width: 900px;
+  margin: 10px 0 30px;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.contactSection > p:not(.sectionNumber) {
+  max-width: 600px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 45px;
+}
+
+.contactLinks a {
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 3px;
+}
+
+footer {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .navLinks {
+    gap: 16px;
+  }
+
+  .navLinks a:nth-child(3),
+  .navLinks a:nth-child(4) {
+    display: none;
+  }
+
+  .hero,
+  .section,
+  .contactSection,
+  footer {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .hero {
+    min-height: 85vh;
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 20vw, 7rem);
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectCard.featured {
+    grid-column: span 1;
+  }
+
+  .projectCard {
+    min-height: 330px;
+  }
+
+  .comingSoon {
+    flex-direction: column;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 4px;
+  }
 }

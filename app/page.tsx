@@ -1,69 +1,243 @@
-import Image from "next/image";
+const projects = [
+  {
+    number: "01",
+    title: "Financial Performance & Anomaly Investigation Agent",
+    category: "AI ENGINEERING · FINANCIAL ANALYSIS",
+    description:
+      "A tool-using AI agent that analyses structured company financial data, detects significant performance changes and autonomously investigates their measurable drivers using deterministic analytical tools.",
+    tech: "Python · OpenAI API · Pandas · Tool Calling",
+    link: "https://github.com/aadsj12/financial-investigation-agent",
+    linkText: "View on GitHub ↗",
+    featured: true,
+  },
+  {
+    number: "02",
+    title: "Onyx Trading Risk Dashboard",
+    category: "MARKET RISK · QUANTITATIVE FINANCE",
+    description:
+      "An interactive trading-risk dashboard for monitoring firm and desk-level exposure, tracking VaR utilisation and limit breaches, analysing P&L trends and identifying positions driving risk.",
+    tech: "Tableau · Value at Risk · Market Risk · P&L Analysis",
+    link: "https://public.tableau.com/views/OnyxRiskDashboard/Dashboard2?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    linkText: "View Tableau Dashboard ↗",
+    featured: false,
+  },
+  {
+    number: "03",
+    title: "Task Management API",
+    category: "BACKEND ENGINEERING",
+    description:
+      "A production-style REST API for task management, built with FastAPI and PostgreSQL, containerised with Docker and secured with Supabase authentication.",
+    tech: "Python · FastAPI · PostgreSQL · Docker · Supabase",
+    link: "https://github.com/aadsj12/task-api",
+    linkText: "View on GitHub ↗",
+    featured: false,
+  },
+  {
+    number: "04",
+    title: "Options Risk & Exposure Dashboard",
+    category: "DERIVATIVES · QUANTITATIVE FINANCE",
+    description:
+      "An interactive Tableau dashboard analysing options risk across S&P 500 components, including spot price, implied volatility, Vega, Gamma, sector exposure and expiry-level risk concentration.",
+    tech: "Tableau · Options Analytics · Greeks · Risk Analysis",
+    link: "https://public.tableau.com/views/OptionsRiskExposureDashboard/Dashboard4?:language=en-GB&:sid=&:display_count=n&:origin=viz_share_link",
+    linkText: "View Tableau Dashboard ↗",
+    featured: false,
+  },
+  {
+    number: "05",
+    title: "Polite Web Scraper",
+    category: "PYTHON · DATA ENGINEERING",
+    description:
+      "A responsible web-scraping pipeline designed around respectful request behaviour, caching, validation, structured data extraction and robust failure handling.",
+    tech: "Python · Pydantic · Web Scraping · Data Validation",
+    link: "https://github.com/aadsj12/Polite-scraper",
+    linkText: "View on GitHub ↗",
+    featured: false,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main>
+      {/* NAVIGATION */}
+      <nav className="navbar">
+        <a className="logo" href="#top">
+          AJ.
+        </a>
+
+        <div className="navLinks">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#writing">Writing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="hero" id="top">
+        <p className="eyebrow">FINTECH · AI · SOFTWARE ENGINEERING</p>
+
+        <h1>
+          Hi, I am <span>Aadya.</span>
+        </h1>
+
+        <h2>
+          I build intelligent systems at the intersection of finance and
+          technology.
+        </h2>
+
+        <p className="heroText">
+          I am a Financial Technology graduate from Imperial College London,
+          interested in AI engineering, financial technology and building
+          software that solves real problems.
+        </p>
+
+        <div className="heroButtons">
+          <a className="primaryButton" href="#projects">
+            View My Work
+          </a>
+
+          <a className="secondaryButton" href="#contact">
+            Get in Touch →
+          </a>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="section" id="about">
+        <p className="sectionNumber">01</p>
+        <h2 className="sectionTitle">About me</h2>
+
+        <div className="aboutGrid">
+          <p className="largeText">
+            I&apos;m interested in the point where finance, software and
+            intelligent systems meet.
+          </p>
+
+          <div className="aboutCopy">
+            <p>
+              My background combines computer science and financial
+              technology, with experience across AI engineering, backend
+              development, machine learning, data analytics and quantitative
+              finance.
+            </p>
+
+            <p>
+              I&apos;m particularly interested in practical AI systems,
+              financial technology and building reliable software around
+              complex real-world problems.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="section" id="projects">
+        <p className="sectionNumber">02</p>
+        <h2 className="sectionTitle">Selected Projects</h2>
+
+        <div className="projectGrid">
+          {projects.map((project) => (
+            <article
+              className={`projectCard ${
+                project.featured ? "featured" : ""
+              }`}
+              key={project.title}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className="projectTop">
+                <p className="projectType">{project.category}</p>
+                <span className="projectNumber">{project.number}</span>
+              </div>
+
+              <h3>{project.title}</h3>
+
+              <p className="projectDescription">
+                {project.description}
+              </p>
+
+              <p className="tech">{project.tech}</p>
+
+              <a
+                className="projectLink"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {project.linkText}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section className="section" id="experience">
+        <p className="sectionNumber">03</p>
+        <h2 className="sectionTitle">Experience</h2>
+
+        <div className="statement">
+          <p>
+            My experience spans AI engineering, backend software development,
+            data analytics, quantitative finance and financial technology.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+      </section>
+
+      {/* WRITING */}
+      <section className="section" id="writing">
+        <p className="sectionNumber">04</p>
+        <h2 className="sectionTitle">Writing & notes</h2>
+
+        <div className="comingSoon">
+          <p>
+            Thoughts on AI, financial technology, software engineering and
+            things I am building.
+          </p>
+
+          <span>Coming soon.</span>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className="contactSection" id="contact">
+        <p className="sectionNumber">05</p>
+
+        <h2>Let&apos;s build something interesting.</h2>
+
+        <p>
+          I am interested in conversations about technology, finance and
+          opportunities to work on ambitious technical problems.
+        </p>
+
+        <div className="contactLinks">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="http://www.linkedin.com/in/aadya-jha"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
+            LinkedIn ↗
           </a>
+
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/aadsj12"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Documentation
+            GitHub ↗
+          </a>
+
+          <a href="/cv.pdf" target="_blank">
+            CV ↗
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <p>Aadya Jha</p>
+        <p>Built with Next.js · 2026</p>
+      </footer>
+    </main>
   );
 }
