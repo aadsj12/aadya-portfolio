@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 const projects = [
   {
     number: "01",
@@ -59,33 +61,46 @@ const projects = [
 ];
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const form = event.currentTarget;
-  const formData = new FormData(form);
+    // Prevent another submission while the first one is in progress.
+    if (isSubmitting) return;
 
-  const response = await fetch("/__forms.html", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(
-      Array.from(formData.entries()).map(([key, value]) => [
-        key,
-        value.toString(),
-      ])
-    ).toString(),
-  });
-  
-  if (!response.ok) {
-  alert(`Submission failed: ${response.status}`);
-  return;
-}
+    setIsSubmitting(true);
 
-  form.reset();
-  alert("Thanks! Your message has been sent.");
-}
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/__forms.html", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(
+          Array.from(formData.entries()).map(([key, value]) => [
+            key,
+            value.toString(),
+          ])
+        ).toString(),
+      });
+
+      if (!response.ok) {
+        alert(`Submission failed: ${response.status}`);
+        return;
+      }
+
+      form.reset();
+      alert("Thanks! Your message has been sent.");
+    } catch {
+      alert("Submission failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <main>
@@ -113,11 +128,13 @@ export default function Home() {
         </h1>
 
         <h2>
-          I am a recent Financial Technology graduate exploring how AI and software can solve problems in finance and beyond.
+          I am a recent Financial Technology graduate exploring how AI and
+          software can solve problems in finance and beyond.
         </h2>
 
         <p className="heroText">
-          My background combines computer science, financial technology and hands-on experience across AI, data and quantitative finance.
+          My background combines computer science, financial technology and
+          hands-on experience across AI, data and quantitative finance.
         </p>
 
         <div className="heroButtons">
@@ -179,9 +196,7 @@ export default function Home() {
 
               <h3>{project.title}</h3>
 
-              <p className="projectDescription">
-                {project.description}
-              </p>
+              <p className="projectDescription">{project.description}</p>
 
               <p className="tech">{project.tech}</p>
 
@@ -237,43 +252,45 @@ export default function Home() {
           opportunities to work on ambitious technical problems.
         </p>
 
-      <form
-        name="contact"
-        method="POST"
-        onSubmit={handleSubmit}
-        className="contactForm"
-      >
-        <input type="hidden" name="form-name" value="contact" />
+        <form
+          name="contact"
+          method="POST"
+          onSubmit={handleSubmit}
+          className="contactForm"
+        >
+          <input type="hidden" name="form-name" value="contact" />
 
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Your name"
-          required
-        />
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            required
+          />
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="you@example.com"
-          required
-        />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
 
-        <label htmlFor="message">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="What would you like to talk about?"
-          rows={5}
-          required
-        />
+          <label htmlFor="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="What would you like to talk about?"
+            rows={5}
+            required
+          />
 
-        <button type="submit">Send message →</button>
-      </form>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send message →"}
+          </button>
+        </form>
 
         <div className="contactLinks">
           <a
