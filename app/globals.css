@@ -274,6 +274,71 @@ a {
   font-size: 1.05rem;
 }
 
+.contactForm {
+  max-width: 700px;
+  margin-top: 50px;
+  display: grid;
+  gap: 14px;
+}
+
+.contactForm label {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+.contactForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contactForm button {
+  width: fit-content;
+  margin-top: 20px;
+  padding: 14px 22px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #000;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.contactForm button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
 .contactLinks {
   display: flex;
   flex-wrap: wrap;
