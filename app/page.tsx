@@ -1,3 +1,5 @@
+"use client";
+
 const projects = [
   {
     number: "01",
@@ -57,6 +59,29 @@ const projects = [
 ];
 
 export default function Home() {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  await fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams(
+      Array.from(formData.entries()).map(([key, value]) => [
+        key,
+        value.toString(),
+      ])
+    ).toString(),
+  });
+
+    form.reset();
+    alert("Thanks! Your message has been sent.");
+  }
+
   return (
     <main>
       {/* NAVIGATION */}
@@ -213,7 +238,7 @@ export default function Home() {
       <form
         name="contact"
         method="POST"
-        action="/"
+        onSubmit={handleSubmit}
         className="contactForm"
       >
         <input type="hidden" name="form-name" value="contact" />
