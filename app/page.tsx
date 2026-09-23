@@ -113,14 +113,11 @@ export default function Home() {
         </h1>
 
         <h2>
-          I build intelligent systems at the intersection of finance and
-          technology.
+          I am a recent Financial Technology graduate exploring how AI and software can solve problems in finance and beyond.
         </h2>
 
         <p className="heroText">
-          I am a Financial Technology graduate from Imperial College London,
-          interested in AI engineering, financial technology and building
-          software that solves real problems.
+          My background combines computer science, financial technology and hands-on experience across AI, data and quantitative finance.
         </p>
 
         <div className="heroButtons">
