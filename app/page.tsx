@@ -65,7 +65,7 @@ export default function Home() {
   const form = event.currentTarget;
   const formData = new FormData(form);
 
-  await fetch("/", {
+  const response = await fetch("/", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -77,10 +77,15 @@ export default function Home() {
       ])
     ).toString(),
   });
+  
+  if (!response.ok) {
+  alert(`Submission failed: ${response.status}`);
+  return;
+}
 
-    form.reset();
-    alert("Thanks! Your message has been sent.");
-  }
+  form.reset();
+  alert("Thanks! Your message has been sent.");
+}
 
   return (
     <main>
