@@ -213,7 +213,7 @@ export default function Home() {
       <form
         name="contact"
         method="POST"
-        action="/__forms.html"
+        action="/"
         className="contactForm"
       >
         <input type="hidden" name="form-name" value="contact" />
