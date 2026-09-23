@@ -213,7 +213,7 @@ export default function Home() {
       <form
         name="contact"
         method="POST"
-        data-netlify="true"
+        action="/__forms.html"
         className="contactForm"
       >
         <input type="hidden" name="form-name" value="contact" />
