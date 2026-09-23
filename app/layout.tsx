@@ -12,10 +12,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://aadya-jha.netlify.app"),
+
   title: "Aadya Jha | Portfolio",
+
   description:
     "Portfolio of Aadya Jha, a Financial Technology graduate exploring AI, software engineering and quantitative finance.",
+
+  openGraph: {
+    title: "Aadya Jha | Portfolio",
+    description:
+      "Portfolio of Aadya Jha, a Financial Technology graduate exploring AI, software engineering and quantitative finance.",
+    url: "https://aadya-jha.netlify.app",
+    siteName: "Aadya Jha | Portfolio",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary",
+    title: "Aadya Jha | Portfolio",
+    description:
+      "Portfolio of Aadya Jha, a Financial Technology graduate exploring AI, software engineering and quantitative finance.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
